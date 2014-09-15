@@ -1,0 +1,7 @@
+﻿.text-center {
+    text-align: center;
+}
+
+#collectionTableMusic_wrapper, #collectionTableMovies_wrapper, #collectionTableGames_wrapper, #requestTable_wrapper, .btnAddItem {
+    margin-top: 15px;
+}

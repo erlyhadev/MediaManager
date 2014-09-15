@@ -1,0 +1,236 @@
+﻿@model MediaManager.Models.CollectionViewModel
+
+@{
+    ViewBag.Title = "Collection";
+}
+
+<h2>Collection</h2>
+
+<div class="row">
+    <div class="col-lg-12">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active">
+                <a href="#collectionTableMusicTab" role="tab" data-toggle="tab">
+                    <span class="glyphicon glyphicon-music"></span>
+                    Music
+                </a>
+            </li>
+            <li>
+                <a href="#collectionTableMoviesTab" role="tab" data-toggle="tab">
+                    <span class="glyphicon glyphicon-film"></span>
+                    Movies
+                </a>
+            </li>
+            <li>
+                <a href="#collectionTableGamesTab" role="tab" data-toggle="tab">
+                    <span class="glyphicon glyphicon-play-circle"></span>
+                    Games
+                </a>
+            </li>
+            <li>
+                <a href="#requestTableTab" role="tab" data-toggle="tab">
+                    <span class="glyphicon glyphicon-inbox"></span>
+                    Requests
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="collectionTableMusicTab">
+                <a class="btn btn-primary btnAddItem" id="btnAddMusic" href="#">Add Music</a>
+
+                <table class="table table-bordered table-striped" id="collectionTableMusic">
+                    <thead>
+                        <tr>
+                            <th>Artist</th>
+                            <th>Album Title</th>
+                            <th>Year</th>
+                            <th>Genre</th>
+                            <th>On Loan</th>
+                            <th>Loaned To</th>
+                            <th>Loan Length</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Music)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Artist)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AlbumTitle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Year)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Genre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OnLoan)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LoanedToID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LoanLength)
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-primary" id="btnCollectionTableMusicEdit_@(item.ID)" href="#">Edit</a>
+                                    <a class="btn btn-primary" id="btnCollectionTableMusicLoan_@(item.ID)" href="#">Loan</a>
+                                    <a class="btn btn-primary" id="btnCollectionTableMusicReturn_@(item.ID)" href="#">Return</a>
+                                    <a class="btn btn-danger" id="btnCollectionTableMusicRemove_@(item.ID)" href="#">Remove</a>
+                                    <a class="btn btn-primary" id="btnCollectionTableMusicRequest_@(item.ID)" href="#">Request</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane" id="collectionTableMoviesTab">
+                <a class="btn btn-primary btnAddItem" id="btnAddMovie" href="#">Add Movie</a>
+
+                <table class="table table-bordered table-striped" id="collectionTableMovies">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Genre</th>
+                            <th>Year</th>
+                            <th>Length</th>
+                            <th>Format</th>
+                            <th>On Loan</th>
+                            <th>Loaned To</th>
+                            <th>Loan Length</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Movies)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Genre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Year)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Length)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Format)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OnLoan)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LoanedToID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LoanLength)
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-primary" id="btnCollectionTableMovieEdit_@(item.ID)" href="#">Edit</a>
+                                    <a class="btn btn-primary" id="btnCollectionTableMovieLoan_@(item.ID)" href="#">Loan</a>
+                                    <a class="btn btn-primary" id="btnCollectionTableMovieReturn_@(item.ID)" href="#">Return</a>
+                                    <a class="btn btn-danger" id="btnCollectionTableMovieRemove_@(item.ID)" href="#">Remove</a>
+                                    <a class="btn btn-primary" id="btnCollectionTableMovieRequest_@(item.ID)" href="#">Request</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane" id="collectionTableGamesTab">
+                <a class="btn btn-primary btnAddItem" id="btnAddGame" href="#">Add Game</a>
+
+                <table class="table table-bordered table-striped" id="collectionTableGames">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Platform</th>
+                            <th>Genre</th>
+                            <th>Year</th>
+                            <th>On Loan</th>
+                            <th>Loaned To</th>
+                            <th>Loan Length</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Games)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Platform)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Genre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Year)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OnLoan)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LoanedToID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LoanLength)
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-primary" id="btnCollectionTableGameEdit_@(item.ID)" href="#">Edit</a>
+                                    <a class="btn btn-primary" id="btnCollectionTableGameLoan_@(item.ID)" href="#">Loan</a>
+                                    <a class="btn btn-primary" id="btnCollectionTableGameReturn_@(item.ID)" href="#">Return</a>
+                                    <a class="btn btn-danger" id="btnCollectionTableGameRemove_@(item.ID)" href="#">Remove</a>
+                                    <a class="btn btn-primary" id="btnCollectionTableGameRequest_@(item.ID)" href="#">Request</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane" id="requestTableTab">
+                <table class="table table-bordered table-striped" id="requestTable">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Item Type</th>
+                            <th>Requested By</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*@foreach (var item in Model.Requests)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Item)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ItemType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RequestedBy)
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-success" id="btnRequestTableApprove_@(item.ID)" href="#">Approve</a>
+                                    <a class="btn btn-danger" id="btnRequestTableDanger_@(item.ID)" href="#">Deny</a>
+                                </td>
+                            </tr>
+                        }*@
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

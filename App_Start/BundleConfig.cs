@@ -23,8 +23,18 @@ namespace MediaManager
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/mediaManager").Include(
+                       "~/Scripts/mediaManager.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/dataTables").Include(
+                       "~/Scripts/jquery.dataTables.min.js",
+                       "~/Scripts/dataTables.bootstrap.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/dataTables.bootstrap.css",
+                      //"~/Content/jquery.dataTables.min.css",
+                      "~/Content/mediaManager.css",
                       "~/Content/site.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,

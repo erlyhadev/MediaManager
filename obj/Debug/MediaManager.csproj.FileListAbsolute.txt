@@ -52,3 +52,4 @@ c:\users\erika\documents\visual studio 2013\Projects\MediaManager\MediaManager\b
 c:\users\erika\documents\visual studio 2013\Projects\MediaManager\MediaManager\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 c:\users\erika\documents\visual studio 2013\Projects\MediaManager\MediaManager\obj\Debug\MediaManager.dll
 c:\users\erika\documents\visual studio 2013\Projects\MediaManager\MediaManager\obj\Debug\MediaManager.pdb
+C:\Users\Erika\Documents\Visual Studio 2013\Projects\MediaManager\MediaManager\obj\Debug\MediaManager.csprojResolveAssemblyReference.cache
