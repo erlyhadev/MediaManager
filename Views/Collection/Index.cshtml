@@ -7,7 +7,7 @@
 <h2>Collection</h2>
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-md-12">
         <ul class="nav nav-tabs" role="tablist">
             <li class="active">
                 <a href="#collectionTableMusicTab" role="tab" data-toggle="tab">
@@ -37,7 +37,7 @@
 
         <div class="tab-content">
             <div class="tab-pane active" id="collectionTableMusicTab">
-                <a class="btn btn-primary btnAddItem" id="btnAddMusic" href="#">Add Music</a>
+                <a class="btn btn-primary btnAddItem" id="btnAddMusic" data-toggle="modal" data-target="#addMusicModal">Add Music</a>
 
                 <table class="table table-bordered table-striped" id="collectionTableMusic">
                     <thead>
@@ -78,11 +78,11 @@
                                     @Html.DisplayFor(modelItem => item.LoanLength)
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-primary" id="btnCollectionTableMusicEdit_@(item.ID)" href="#">Edit</a>
-                                    <a class="btn btn-primary" id="btnCollectionTableMusicLoan_@(item.ID)" href="#">Loan</a>
-                                    <a class="btn btn-primary" id="btnCollectionTableMusicReturn_@(item.ID)" href="#">Return</a>
-                                    <a class="btn btn-danger" id="btnCollectionTableMusicRemove_@(item.ID)" href="#">Remove</a>
-                                    <a class="btn btn-primary" id="btnCollectionTableMusicRequest_@(item.ID)" href="#">Request</a>
+                                    <a class="btn btn-primary btnCollectionTableEdit" id="btnCollectionTableMusicEdit_@(item.ID)" data-toggle="modal" data-target="#editMusicModal">Edit</a>
+                                    <a class="btn btn-primary btnCollectionTableLoan" id="btnCollectionTableMusicLoan_@(item.ID)" href="#">Loan</a>
+                                    <a class="btn btn-primary btnCollectionTableReturn" id="btnCollectionTableMusicReturn_@(item.ID)" href="#">Return</a>
+                                    <a class="btn btn-danger btnCollectionTableRemove" id="btnCollectionTableMusicRemove_@(item.ID)" href="#">Remove</a>
+                                    <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableMusicRequest_@(item.ID)" href="#">Request</a>
                                 </td>
                             </tr>
                         }
@@ -90,7 +90,7 @@
                 </table>
             </div>
             <div class="tab-pane" id="collectionTableMoviesTab">
-                <a class="btn btn-primary btnAddItem" id="btnAddMovie" href="#">Add Movie</a>
+                <a class="btn btn-primary btnAddItem" id="btnAddMovie" data-toggle="modal" data-target="#addMovieModal">Add Movie</a>
 
                 <table class="table table-bordered table-striped" id="collectionTableMovies">
                     <thead>
@@ -135,11 +135,11 @@
                                     @Html.DisplayFor(modelItem => item.LoanLength)
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-primary" id="btnCollectionTableMovieEdit_@(item.ID)" href="#">Edit</a>
-                                    <a class="btn btn-primary" id="btnCollectionTableMovieLoan_@(item.ID)" href="#">Loan</a>
-                                    <a class="btn btn-primary" id="btnCollectionTableMovieReturn_@(item.ID)" href="#">Return</a>
-                                    <a class="btn btn-danger" id="btnCollectionTableMovieRemove_@(item.ID)" href="#">Remove</a>
-                                    <a class="btn btn-primary" id="btnCollectionTableMovieRequest_@(item.ID)" href="#">Request</a>
+                                    <a class="btn btn-primary btnCollectionTableEdit" id="btnCollectionTableMovieEdit_@(item.ID)" href="#">Edit</a>
+                                    <a class="btn btn-primary btnCollectionTableLoan" id="btnCollectionTableMovieLoan_@(item.ID)" href="#">Loan</a>
+                                    <a class="btn btn-primary btnCollectionTableReturn" id="btnCollectionTableMovieReturn_@(item.ID)" href="#">Return</a>
+                                    <a class="btn btn-danger btnCollectionTableRemove" id="btnCollectionTableMovieRemove_@(item.ID)" href="#">Remove</a>
+                                    <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableMovieRequest_@(item.ID)" href="#">Request</a>
                                 </td>
                             </tr>
                         }
@@ -147,7 +147,7 @@
                 </table>
             </div>
             <div class="tab-pane" id="collectionTableGamesTab">
-                <a class="btn btn-primary btnAddItem" id="btnAddGame" href="#">Add Game</a>
+                <a class="btn btn-primary btnAddItem" id="btnAddGame" data-toggle="modal" data-target="#addGameModal">Add Game</a>
 
                 <table class="table table-bordered table-striped" id="collectionTableGames">
                     <thead>
@@ -188,11 +188,11 @@
                                     @Html.DisplayFor(modelItem => item.LoanLength)
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-primary" id="btnCollectionTableGameEdit_@(item.ID)" href="#">Edit</a>
-                                    <a class="btn btn-primary" id="btnCollectionTableGameLoan_@(item.ID)" href="#">Loan</a>
-                                    <a class="btn btn-primary" id="btnCollectionTableGameReturn_@(item.ID)" href="#">Return</a>
-                                    <a class="btn btn-danger" id="btnCollectionTableGameRemove_@(item.ID)" href="#">Remove</a>
-                                    <a class="btn btn-primary" id="btnCollectionTableGameRequest_@(item.ID)" href="#">Request</a>
+                                    <a class="btn btn-primary btnCollectionTableEdit" id="btnCollectionTableGameEdit_@(item.ID)" href="#">Edit</a>
+                                    <a class="btn btn-primary btnCollectionTableLoan" id="btnCollectionTableGameLoan_@(item.ID)" href="#">Loan</a>
+                                    <a class="btn btn-primary btnCollectionTableReturn" id="btnCollectionTableGameReturn_@(item.ID)" href="#">Return</a>
+                                    <a class="btn btn-danger btnCollectionTableRemove" id="btnCollectionTableGameRemove_@(item.ID)" href="#">Remove</a>
+                                    <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableGameRequest_@(item.ID)" href="#">Request</a>
                                 </td>
                             </tr>
                         }
@@ -223,13 +223,124 @@
                                     @Html.DisplayFor(modelItem => item.RequestedBy)
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-success" id="btnRequestTableApprove_@(item.ID)" href="#">Approve</a>
-                                    <a class="btn btn-danger" id="btnRequestTableDanger_@(item.ID)" href="#">Deny</a>
+                                    <a class="btn btn-success btnRequestTableApprove" id="btnRequestTableApprove_@(item.ID)" href="#">Approve</a>
+                                    <a class="btn btn-danger btnRequestTableDeny" id="btnRequestTableDanger_@(item.ID)" href="#">Deny</a>
                                 </td>
                             </tr>
                         }*@
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*"Add" Modals*@
+<div class="modal fade" id="addMusicModal" tabindex="-1" role="dialog" aria-labelledby="addMusicModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addMusicModalLabel">Add Music</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addMovieModal" tabindex="-1" role="dialog" aria-labelledby="addMovieModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addMovieModalLabel">Add Movie</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addGameModal" tabindex="-1" role="dialog" aria-labelledby="addGameModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addGameModalLabel">Add Game</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*"Edit" Modals*@
+<div class="modal fade" id="editMusicModal" tabindex="-1" role="dialog" aria-labelledby="editMusicModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="editMusicModalLabel">Edit Music</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnEditMusicModal">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editMovieModal" tabindex="-1" role="dialog" aria-labelledby="editMovieModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="editMovieModalLabel">Edit Movie</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editGameModal" tabindex="-1" role="dialog" aria-labelledby="editGameModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="editGameModalLabel">Edit Game</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Update</button>
             </div>
         </div>
     </div>

@@ -8,6 +8,7 @@ using MediaManager.Models;
 
 namespace MediaManager.Controllers
 {
+    //[Authorize]
     public class CollectionController : Controller
     {
         private MusicDBContext dbMusic = new MusicDBContext();

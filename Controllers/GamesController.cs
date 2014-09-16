@@ -10,6 +10,7 @@ using MediaManager.Models;
 
 namespace MediaManager.Controllers
 {
+    [Authorize]
     public class GamesController : Controller
     {
         private GameDBContext db = new GameDBContext();

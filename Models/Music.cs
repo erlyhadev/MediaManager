@@ -41,7 +41,7 @@ namespace MediaManager.Models
                     if (loanDate.HasValue)
                     {
                         TimeSpan elapsed = DateTime.Now.Subtract(loanDate.Value);
-                        loanedLength = elapsed.TotalDays.ToString("0") + " days";
+                        loanedLength = elapsed.TotalDays.ToString("0") + ((elapsed.TotalDays <= 1.5) ? " day" : " days");
                     }
                 }
 
