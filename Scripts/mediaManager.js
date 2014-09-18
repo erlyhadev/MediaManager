@@ -275,6 +275,7 @@
         $.post("Collection/Request", addRequestVerificationToken({ requestedItem: requestedItem }))
             .done(function (data) {
                 //$(this).addClass("disabled");
+                alert("Request added!");
                 location.reload(true);
             });
     });
@@ -284,7 +285,13 @@
     });
 
     $('.btnRequestTableDeny').click(function (e) {
-        console.log(e.target.id);
+        var currentRowIndex = $(this).closest('td').parent()[0].sectionRowIndex + 1;
+        var itemID = e.target.id.substring(e.target.id.indexOf('_') + 1);
+
+        $.post("Collection/DeleteRequest/", addRequestVerificationToken({ id: itemID }))
+            .done(function (data) {
+                $('#requestTable').DataTable().row($('#requestTable tr:eq(' + currentRowIndex + ')')).remove().draw();
+            });
     });
 });
 

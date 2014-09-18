@@ -5,10 +5,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MediaManager.Models;
+using System.Net;
 
 namespace MediaManager.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class CollectionController : Controller
     {
         private MusicDBContext dbMusic = new MusicDBContext();
@@ -113,6 +114,41 @@ namespace MediaManager.Controllers
             }
 
             return View(requestedItem);
+        }
+
+        // GET: Collection/DeleteRequest/5
+        public ActionResult DeleteRequest(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            RequestedItem item = dbRequest.RequestedItems.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            return View(item);
+        }
+
+        // POST: Movies/Delete/5
+        [HttpPost, ActionName("DeleteRequest")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteRequestConfirmed(int id)
+        {
+            RequestedItem item = dbRequest.RequestedItems.Find(id);
+            dbRequest.RequestedItems.Remove(item);
+            dbRequest.SaveChanges();
+            return RedirectToAction("Index", "Collection");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                dbRequest.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

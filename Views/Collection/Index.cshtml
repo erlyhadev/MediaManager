@@ -38,7 +38,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="collectionTableMusicTab">
                 <a class="btn btn-primary btnAddItem" id="btnAddMusic" data-toggle="modal" data-target="#addMusicModal">Add Music</a>
-
+                
                 <table class="table table-bordered table-striped" id="collectionTableMusic">
                     <thead>
                         <tr>
@@ -90,15 +90,7 @@
                                     }
 
                                     <a class="btn btn-danger btnCollectionTableRemove" id="btnCollectionTableMusicRemove_@item.ID" data-id="@item.ID" href="#">Remove</a>
-
-                                    @if (item.OnLoan == MediaManager.Models.MusicOnLoan.No)
-                                    {
-                                        <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
-                                    } 
-                                    else
-                                    {
-                                        <a class="btn btn-primary btnCollectionTableRequest disabled" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
-                                    }
+                                    <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
                                 </td>
                             </tr>
                         }
@@ -163,15 +155,7 @@
                                     }
 
                                     <a class="btn btn-danger btnCollectionTableRemove" id="btnCollectionTableMovieRemove_@item.ID" data-id="@item.ID" href="#">Remove</a>
-
-                                    @if (item.OnLoan == MediaManager.Models.MovieOnLoan.No)
-                                    {
-                                        <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
-                                    }
-                                    else
-                                    {
-                                        <a class="btn btn-primary btnCollectionTableRequest disabled" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
-                                    }
+                                    <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
                                 </td>
                             </tr>
                         }
@@ -232,15 +216,7 @@
                                     }
 
                                     <a class="btn btn-danger btnCollectionTableRemove" id="btnCollectionTableGameRemove_@item.ID" data-id="@item.ID" href="#">Remove</a>
-
-                                    @if (item.OnLoan == MediaManager.Models.GameOnLoan.No)
-                                    {
-                                        <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
-                                    }
-                                    else
-                                    {
-                                        <a class="btn btn-primary btnCollectionTableRequest disabled" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
-                                    }
+                                    <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
                                 </td>
                             </tr>
                         }
@@ -258,29 +234,32 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @Html.HiddenFor(m => m.RequestedItem.ID, new { @id = "requestTableRequestID" })
+
                         @foreach (var item in Model.RequestsList)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ItemID)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ItemType)
-                                    </td>
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.RequestedBy)
-                                    </td>*@
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.RequestorID)
-                                    </td>
-                                    <td class="text-center">
-                                        @* TODO: Can't approve if item's OnLoan == 'Yes' ('Approve' is 'Loan' action) *@
-                                        <a class="btn btn-success btnRequestTableApprove" id="btnRequestTableApprove_@(item.ID)" href="#">Approve</a>
-                                        <a class="btn btn-danger btnRequestTableDeny" id="btnRequestTableDeny_@(item.ID)" href="#">Deny</a>
-                                    </td>
-                                </tr>
-                            }
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ItemID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ItemType)
+                                </td>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.RequestedBy)
+                                </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RequestorID)
+                                </td>
+                                <td class="text-center">
+                                    @* TODO: Can't approve if item's OnLoan == 'Yes' ('Approve' is 'Loan' action) *@
+                                    <a class="btn btn-success btnRequestTableApprove" id="btnRequestTableApprove_@(item.ID)" href="#">Approve</a>
+                                    <a class="btn btn-danger btnRequestTableDeny" id="btnRequestTableDeny_@(item.ID)" href="#">Deny</a>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
+
                 </table>
             </div>
         </div>
