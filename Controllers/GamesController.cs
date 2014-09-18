@@ -53,7 +53,7 @@ namespace MediaManager.Controllers
             {
                 db.Games.Add(game);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Collection");
             }
 
             return View(game);
@@ -71,7 +71,8 @@ namespace MediaManager.Controllers
             {
                 return HttpNotFound();
             }
-            return View(game);
+            //return View(game);
+            return Json(game, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Games/Edit/5
@@ -85,7 +86,7 @@ namespace MediaManager.Controllers
             {
                 db.Entry(game).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Collection");
             }
             return View(game);
         }
@@ -113,7 +114,7 @@ namespace MediaManager.Controllers
             Game game = db.Games.Find(id);
             db.Games.Remove(game);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Collection");
         }
 
         protected override void Dispose(bool disposing)

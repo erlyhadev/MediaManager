@@ -22,6 +22,7 @@ namespace MediaManager
             Database.SetInitializer<MusicDBContext>(new DropCreateDatabaseIfModelChanges<MusicDBContext>());
             Database.SetInitializer<MovieDBContext>(new DropCreateDatabaseIfModelChanges<MovieDBContext>());
             Database.SetInitializer<GameDBContext>(new DropCreateDatabaseIfModelChanges<GameDBContext>());
+            Database.SetInitializer<RequestDBContext>(new DropCreateDatabaseIfModelChanges<RequestDBContext>());
         }
     }
 }

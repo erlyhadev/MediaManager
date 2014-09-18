@@ -14,16 +14,16 @@ namespace MediaManager.Controllers
         private MusicDBContext dbMusic = new MusicDBContext();
         private MovieDBContext dbMovie = new MovieDBContext();
         private GameDBContext dbGame = new GameDBContext();
-        //private RequestDBContext dbRequest = new RequestDBContext();
+        private RequestDBContext dbRequest = new RequestDBContext();
 
         // GET: Collection
         public ActionResult Index()
         {
             CollectionViewModel myCollection = new CollectionViewModel();
-            myCollection.Music = dbMusic.Music.ToList();
-            myCollection.Movies = dbMovie.Movies.ToList();
-            myCollection.Games = dbGame.Games.ToList();
-            //myCollection.Requests = dbRequest.Requests.ToList();
+            myCollection.MusicList = dbMusic.Music.ToList();
+            myCollection.MoviesList = dbMovie.Movies.ToList();
+            myCollection.GamesList = dbGame.Games.ToList();
+            myCollection.RequestsList = dbRequest.RequestedItems.ToList();
 
             return View(myCollection);
         }
@@ -98,6 +98,21 @@ namespace MediaManager.Controllers
             {
                 return View();
             }
+        }
+
+        // POST: Collection/Request/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Request([Bind(Include = "ID,ItemID,ItemType,OwnerID,RequestorID")] RequestedItem requestedItem)
+        {
+            if (ModelState.IsValid)
+            {
+                dbRequest.RequestedItems.Add(requestedItem);
+                dbRequest.SaveChanges();
+                return RedirectToAction("Index", "Collection");
+            }
+
+            return View(requestedItem);
         }
     }
 }

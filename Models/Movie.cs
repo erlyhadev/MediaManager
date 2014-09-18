@@ -5,6 +5,17 @@ using System.Linq;
 
 namespace MediaManager.Models
 {
+    public enum MovieFormat
+    {
+        Bluray,
+        DVD
+    }
+
+    public enum MovieOnLoan
+    {
+        No,
+        Yes
+    }
     public class Movie
     {
         public int ID { get; set; }
@@ -13,16 +24,16 @@ namespace MediaManager.Models
         public string Genre { get; set; }
         public string Year { get; set; }
         public string Length { get; set; }
-        public string Format { get; set; }
+        public MovieFormat Format { get; set; }
 
         [Display(Name = "On Loan")]
-        public string OnLoan { get; set; }
+        public MovieOnLoan OnLoan { get; set; }
 
         [Display(Name = "Loaned To")]
-        public int LoanedToID { get; set; }
+        public int? LoanedToID { get; set; }
 
         [Display(Name = "Date Loaned")]
-        public DateTime LoanedDate { get; set; }
+        public DateTime? LoanedDate { get; set; }
 
         [Display(Name = "Loan Length")]
         public string LoanLength
@@ -40,12 +51,19 @@ namespace MediaManager.Models
                     if (loanDate.HasValue)
                     {
                         TimeSpan elapsed = DateTime.Now.Subtract(loanDate.Value);
-                        loanedLength = elapsed.TotalDays.ToString("0") + ((elapsed.TotalDays <= 1.5) ? " day" : " days");
+                        loanedLength = elapsed.Days.ToString("0") + ((elapsed.Days == 1) ? " day" : " days");
                     }
                 }
 
                 return loanedLength;
             }
+        }
+
+        public Movie()
+        {
+            this.OnLoan = MovieOnLoan.No;
+            this.LoanedToID = null;
+            this.LoanedDate = null;
         }
     }
 

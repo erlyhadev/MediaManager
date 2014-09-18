@@ -5,6 +5,11 @@ using System.Linq;
 
 namespace MediaManager.Models
 {
+    public enum GameOnLoan
+    {
+        No,
+        Yes
+    }
     public class Game
     {
         public int ID { get; set; }
@@ -15,13 +20,13 @@ namespace MediaManager.Models
         public string Year { get; set; }
 
         [Display(Name = "On Loan")]
-        public string OnLoan { get; set; }
+        public GameOnLoan OnLoan { get; set; }
 
         [Display(Name = "Loaned To")]
-        public int LoanedToID { get; set; }
+        public int? LoanedToID { get; set; }
 
         [Display(Name = "Date Loaned")]
-        public DateTime LoanedDate { get; set; }
+        public DateTime? LoanedDate { get; set; }
 
         [Display(Name = "Loan Length")]
         public string LoanLength
@@ -39,12 +44,19 @@ namespace MediaManager.Models
                     if (loanDate.HasValue)
                     {
                         TimeSpan elapsed = DateTime.Now.Subtract(loanDate.Value);
-                        loanedLength = elapsed.TotalDays.ToString("0") + ((elapsed.TotalDays <= 1.5) ? " day" : " days");
+                        loanedLength = elapsed.Days.ToString("0") + ((elapsed.Days == 1) ? " day" : " days");
                     }
                 }
 
                 return loanedLength;
             }
+        }
+
+        public Game()
+        {
+            this.OnLoan = GameOnLoan.No;
+            this.LoanedToID = null;
+            this.LoanedDate = null;
         }
     }
 

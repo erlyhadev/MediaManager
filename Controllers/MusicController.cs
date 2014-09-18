@@ -10,7 +10,7 @@ using MediaManager.Models;
 
 namespace MediaManager.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class MusicController : Controller
     {
         private MusicDBContext db = new MusicDBContext();
@@ -53,7 +53,7 @@ namespace MediaManager.Controllers
             {
                 db.Music.Add(music);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Collection");
             }
 
             return View(music);
@@ -71,7 +71,8 @@ namespace MediaManager.Controllers
             {
                 return HttpNotFound();
             }
-            return View(music);
+            //return View(music);
+            return Json(music, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Music/Edit/5
@@ -85,7 +86,7 @@ namespace MediaManager.Controllers
             {
                 db.Entry(music).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Collection");
             }
             return View(music);
         }
@@ -113,7 +114,7 @@ namespace MediaManager.Controllers
             Music music = db.Music.Find(id);
             db.Music.Remove(music);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Collection");
         }
 
         protected override void Dispose(bool disposing)

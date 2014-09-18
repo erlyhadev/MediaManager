@@ -53,7 +53,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.Music)
+                        @foreach (var item in Model.MusicList)
                         {
                             <tr>
                                 <td>
@@ -78,11 +78,27 @@
                                     @Html.DisplayFor(modelItem => item.LoanLength)
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-primary btnCollectionTableEdit" id="btnCollectionTableMusicEdit_@(item.ID)" data-toggle="modal" data-target="#editMusicModal">Edit</a>
-                                    <a class="btn btn-primary btnCollectionTableLoan" id="btnCollectionTableMusicLoan_@(item.ID)" href="#">Loan</a>
-                                    <a class="btn btn-primary btnCollectionTableReturn" id="btnCollectionTableMusicReturn_@(item.ID)" href="#">Return</a>
-                                    <a class="btn btn-danger btnCollectionTableRemove" id="btnCollectionTableMusicRemove_@(item.ID)" href="#">Remove</a>
-                                    <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableMusicRequest_@(item.ID)" href="#">Request</a>
+                                    <a class="btn btn-primary" id="btnCollectionTableMusicEdit_@item.ID" data-id="@item.ID" data-toggle="modal" data-target="#editMusicModal">Edit</a>
+
+                                    @if (item.OnLoan == MediaManager.Models.MusicOnLoan.No)
+                                    {
+                                        <a class="btn btn-primary btnCollectionTableLoanReturn" id="btnCollectionTableMusicLoan_@item.ID" data-id="@item.ID" href="#">Loan</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-primary btnCollectionTableLoanReturn" id="btnCollectionTableMusicReturn_@item.ID" data-id="@item.ID" href="#">Return</a>
+                                    }
+
+                                    <a class="btn btn-danger btnCollectionTableRemove" id="btnCollectionTableMusicRemove_@item.ID" data-id="@item.ID" href="#">Remove</a>
+
+                                    @if (item.OnLoan == MediaManager.Models.MusicOnLoan.No)
+                                    {
+                                        <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
+                                    } 
+                                    else
+                                    {
+                                        <a class="btn btn-primary btnCollectionTableRequest disabled" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -107,7 +123,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.Movies)
+                        @foreach (var item in Model.MoviesList)
                         {
                             <tr>
                                 <td>
@@ -135,11 +151,27 @@
                                     @Html.DisplayFor(modelItem => item.LoanLength)
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-primary btnCollectionTableEdit" id="btnCollectionTableMovieEdit_@(item.ID)" href="#">Edit</a>
-                                    <a class="btn btn-primary btnCollectionTableLoan" id="btnCollectionTableMovieLoan_@(item.ID)" href="#">Loan</a>
-                                    <a class="btn btn-primary btnCollectionTableReturn" id="btnCollectionTableMovieReturn_@(item.ID)" href="#">Return</a>
-                                    <a class="btn btn-danger btnCollectionTableRemove" id="btnCollectionTableMovieRemove_@(item.ID)" href="#">Remove</a>
-                                    <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableMovieRequest_@(item.ID)" href="#">Request</a>
+                                    <a class="btn btn-primary" id="btnCollectionTableMovieEdit_@item.ID" data-id="@item.ID" data-toggle="modal" data-target="#editMovieModal">Edit</a>
+
+                                    @if (item.OnLoan == MediaManager.Models.MovieOnLoan.No)
+                                    {
+                                        <a class="btn btn-primary btnCollectionTableLoanReturn" id="btnCollectionTableMovieLoan_@item.ID" data-id="@item.ID" href="#">Loan</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-primary btnCollectionTableLoanReturn" id="btnCollectionTableMovieReturn_@item.ID" data-id="@item.ID" href="#">Return</a>
+                                    }
+
+                                    <a class="btn btn-danger btnCollectionTableRemove" id="btnCollectionTableMovieRemove_@item.ID" data-id="@item.ID" href="#">Remove</a>
+
+                                    @if (item.OnLoan == MediaManager.Models.MovieOnLoan.No)
+                                    {
+                                        <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-primary btnCollectionTableRequest disabled" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -163,7 +195,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.Games)
+                        @foreach (var item in Model.GamesList)
                         {
                             <tr>
                                 <td>
@@ -188,11 +220,27 @@
                                     @Html.DisplayFor(modelItem => item.LoanLength)
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-primary btnCollectionTableEdit" id="btnCollectionTableGameEdit_@(item.ID)" href="#">Edit</a>
-                                    <a class="btn btn-primary btnCollectionTableLoan" id="btnCollectionTableGameLoan_@(item.ID)" href="#">Loan</a>
-                                    <a class="btn btn-primary btnCollectionTableReturn" id="btnCollectionTableGameReturn_@(item.ID)" href="#">Return</a>
-                                    <a class="btn btn-danger btnCollectionTableRemove" id="btnCollectionTableGameRemove_@(item.ID)" href="#">Remove</a>
-                                    <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableGameRequest_@(item.ID)" href="#">Request</a>
+                                    <a class="btn btn-primary" id="btnCollectionTableGameEdit_@item.ID" data-id="@item.ID" data-toggle="modal" data-target="#editGameModal">Edit</a>
+
+                                    @if (item.OnLoan == MediaManager.Models.GameOnLoan.No)
+                                    {
+                                        <a class="btn btn-primary btnCollectionTableLoanReturn" id="btnCollectionTableGameLoan_@item.ID" data-id="@item.ID" href="#">Loan</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-primary btnCollectionTableLoanReturn" id="btnCollectionTableGameReturn_@item.ID" data-id="@item.ID" href="#">Return</a>
+                                    }
+
+                                    <a class="btn btn-danger btnCollectionTableRemove" id="btnCollectionTableGameRemove_@item.ID" data-id="@item.ID" href="#">Remove</a>
+
+                                    @if (item.OnLoan == MediaManager.Models.GameOnLoan.No)
+                                    {
+                                        <a class="btn btn-primary btnCollectionTableRequest" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-primary btnCollectionTableRequest disabled" id="btnCollectionTableMusicRequest_@item.ID" data-id="@item.ID" href="#">Request</a>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -210,24 +258,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @*@foreach (var item in Model.Requests)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Item)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ItemType)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RequestedBy)
-                                </td>
-                                <td class="text-center">
-                                    <a class="btn btn-success btnRequestTableApprove" id="btnRequestTableApprove_@(item.ID)" href="#">Approve</a>
-                                    <a class="btn btn-danger btnRequestTableDeny" id="btnRequestTableDanger_@(item.ID)" href="#">Deny</a>
-                                </td>
-                            </tr>
-                        }*@
+                        @foreach (var item in Model.RequestsList)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ItemID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ItemType)
+                                    </td>
+                                    @*<td>
+                                        @Html.DisplayFor(modelItem => item.RequestedBy)
+                                    </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RequestorID)
+                                    </td>
+                                    <td class="text-center">
+                                        @* TODO: Can't approve if item's OnLoan == 'Yes' ('Approve' is 'Loan' action) *@
+                                        <a class="btn btn-success btnRequestTableApprove" id="btnRequestTableApprove_@(item.ID)" href="#">Approve</a>
+                                        <a class="btn btn-danger btnRequestTableDeny" id="btnRequestTableDeny_@(item.ID)" href="#">Deny</a>
+                                    </td>
+                                </tr>
+                            }
                     </tbody>
                 </table>
             </div>
@@ -245,11 +297,56 @@
                 <h4 class="modal-title" id="addMusicModalLabel">Add Music</h4>
             </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Add</button>
+                @using (Html.BeginForm("Create", "Music", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Music.Artist, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Music.Artist, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Music.AlbumTitle, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Music.AlbumTitle, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Music.Year, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Music.Year, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Music.Genre, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Music.Genre, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        @Html.LabelFor(m => m.Music.OnLoan, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-9">
+                            @Html.DropDownListFor(m => m.Music.OnLoan, new SelectList(
+                              new List<Object>
+                              {
+                                  new { value = "No", text = "No" },
+                                  new { value = "Yes", text = "Yes" }
+                              }
+                            ), new { @class = "form-control" })
+                        </div>
+                    </div>*@
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Add" />
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -263,11 +360,62 @@
                 <h4 class="modal-title" id="addMovieModalLabel">Add Movie</h4>
             </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Add</button>
+                @using (Html.BeginForm("Create", "Movie", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Movie.Title, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Movie.Title, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Movie.Genre, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Movie.Genre, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Movie.Year, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Movie.Year, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Movie.Length, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Movie.Length, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Movie.Format, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Movie.Format, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                            @Html.LabelFor(m => m.Movie.OnLoan, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-9">
+                                @Html.DropDownListFor(m => m.Movie.OnLoan, new SelectList(
+                                  new List<Object>
+                                  {
+                                      new { value = "No", text = "No" },
+                                      new { value = "Yes", text = "Yes" }
+                                  }
+                                ), new { @class = "form-control" })
+                            </div>
+                        </div>*@
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Add" />
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -281,11 +429,56 @@
                 <h4 class="modal-title" id="addGameModalLabel">Add Game</h4>
             </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Add</button>
+                @using (Html.BeginForm("Create", "Game", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Game.Title, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Game.Title, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Game.Platform, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Game.Platform, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Game.Genre, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Game.Genre, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Game.Year, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Game.Year, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        @Html.LabelFor(m => m.Game.OnLoan, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-9">
+                            @Html.DropDownListFor(m => m.Game.OnLoan, new SelectList(
+                              new List<Object>
+                              {
+                                  new { value = "No", text = "No" },
+                                  new { value = "Yes", text = "Yes" }
+                              }
+                            ), new { @class = "form-control" })
+                        </div>
+                    </div>*@
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Add" />
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -300,11 +493,57 @@
                 <h4 class="modal-title" id="editMusicModalLabel">Edit Music</h4>
             </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="btnEditMusicModal">Update</button>
+                @using (Html.BeginForm("Edit", "Music", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    @Html.HiddenFor(m => m.Music.ID, new { @id = "editMusicModalID" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Music.Artist, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Music.Artist, new { @class = "form-control", @id = "editMusicModalArtist" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Music.AlbumTitle, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Music.AlbumTitle, new { @class = "form-control", @id = "editMusicModalAlbumTitle" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Music.Year, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Music.Year, new { @class = "form-control", @id = "editMusicModalYear" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Music.Genre, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Music.Genre, new { @class = "form-control", @id = "editMusicModalGenre" })
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        @Html.LabelFor(m => m.Music.OnLoan, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-9">
+                            @Html.DropDownListFor(m => m.Music.OnLoan, new SelectList(
+                              new List<Object>
+                              {
+                                  new { value = "No", text = "No" },
+                                  new { value = "Yes", text = "Yes" }
+                              }
+                            ), new { @class = "form-control" })
+                        </div>
+                    </div>*@
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Update" />
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -318,11 +557,63 @@
                 <h4 class="modal-title" id="editMovieModalLabel">Edit Movie</h4>
             </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Update</button>
+                @using (Html.BeginForm("Edit", "Movie", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    @Html.HiddenFor(m => m.Movie.ID, new { @id = "editMovieModalID" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Movie.Title, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Movie.Title, new { @class = "form-control", @id = "editMovieModalTitle" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Movie.Genre, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Movie.Genre, new { @class = "form-control", @id = "editMovieModalGenre" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Movie.Year, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Movie.Year, new { @class = "form-control", @id = "editMovieModalYear" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Movie.Length, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Movie.Length, new { @class = "form-control", @id = "editMovieModalLength" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Movie.Format, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Movie.Format, new { @class = "form-control", @id = "editMovieModalFormat" })
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                            @Html.LabelFor(m => m.Movie.OnLoan, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-9">
+                                @Html.DropDownListFor(m => m.Movie.OnLoan, new SelectList(
+                                  new List<Object>
+                                  {
+                                      new { value = "No", text = "No" },
+                                      new { value = "Yes", text = "Yes" }
+                                  }
+                                ), new { @class = "form-control" })
+                            </div>
+                        </div>*@
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Update" />
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -336,11 +627,57 @@
                 <h4 class="modal-title" id="editGameModalLabel">Edit Game</h4>
             </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Update</button>
+                @using (Html.BeginForm("Edit", "Game", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    @Html.HiddenFor(m => m.Game.ID, new { @id = "editGameModalID" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Game.Title, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Game.Title, new { @class = "form-control", @id = "editGameModalTitle" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Game.Platform, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Game.Platform, new { @class = "form-control", @id = "editGameModalPlatform" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Game.Genre, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Game.Genre, new { @class = "form-control", @id = "editGameModalGenre" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Game.Year, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Game.Year, new { @class = "form-control", @id = "editGameModalYear" })
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                            @Html.LabelFor(m => m.Game.OnLoan, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-9">
+                                @Html.DropDownListFor(m => m.Game.OnLoan, new SelectList(
+                                  new List<Object>
+                                  {
+                                      new { value = "No", text = "No" },
+                                      new { value = "Yes", text = "Yes" }
+                                  }
+                                ), new { @class = "form-control" })
+                            </div>
+                        </div>*@
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Update" />
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>

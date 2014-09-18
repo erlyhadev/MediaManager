@@ -53,7 +53,7 @@ namespace MediaManager.Controllers
             {
                 db.Movies.Add(movie);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Collection");
             }
 
             return View(movie);
@@ -71,7 +71,8 @@ namespace MediaManager.Controllers
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            //return View(movie);
+            return Json(movie, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Movies/Edit/5
@@ -85,7 +86,7 @@ namespace MediaManager.Controllers
             {
                 db.Entry(movie).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Collection");
             }
             return View(movie);
         }
@@ -113,7 +114,7 @@ namespace MediaManager.Controllers
             Movie movie = db.Movies.Find(id);
             db.Movies.Remove(movie);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Collection");
         }
 
         protected override void Dispose(bool disposing)

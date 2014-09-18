@@ -5,6 +5,11 @@ using System.Linq;
 
 namespace MediaManager.Models
 {
+    public enum MusicOnLoan
+    {
+        No,
+        Yes
+    }
     public class Music
     {
         public int ID { get; set; }
@@ -17,7 +22,7 @@ namespace MediaManager.Models
         public string Genre { get; set; }
 
         [Display(Name = "Available")]
-        public string OnLoan { get; set; }
+        public MusicOnLoan OnLoan { get; set; }
 
         [Display(Name = "Loaned To")]
         public int? LoanedToID { get; set; }
@@ -41,12 +46,19 @@ namespace MediaManager.Models
                     if (loanDate.HasValue)
                     {
                         TimeSpan elapsed = DateTime.Now.Subtract(loanDate.Value);
-                        loanedLength = elapsed.TotalDays.ToString("0") + ((elapsed.TotalDays <= 1.5) ? " day" : " days");
+                        loanedLength = elapsed.Days.ToString("0") + ((elapsed.Days == 1) ? " day" : " days");
                     }
                 }
 
                 return loanedLength;
             }
+        }
+
+        public Music()
+        {
+            this.OnLoan = MusicOnLoan.No;
+            this.LoanedToID = null;
+            this.LoanedDate = null;
         }
     }
 
